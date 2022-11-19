@@ -78,7 +78,7 @@ public class UtenteController {
 			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
 
 		if (!result.hasFieldErrors("password") && !utenteDTO.getPassword().equals(utenteDTO.getConfermaPassword()))
-			result.rejectValue("confermaPassword", "password.diverse");
+			result.rejectValue("confermaPassword", "utente.password.diverse");
 
 		if (result.hasErrors()) {
 			model.addAttribute("ruoli_totali_attr", RuoloDTO.createRuoloDTOListFromModelList(ruoloService.listAll()));
