@@ -25,15 +25,15 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository{
 		
 		StringBuilder queryBuilder = new StringBuilder("select u from Utente u where u.id = u.id");
 		
-		if(example.getNome().isEmpty()) {
+		if(!example.getNome().isEmpty()) {
 			whereClause.add(" u.nome like :nome ");
 			parameterMap.put("nome", "%" + example.getNome() + "%");
 		}		
-		if(example.getCognome().isEmpty()) {
+		if(!example.getCognome().isEmpty()) {
 			whereClause.add(" u.cognome like :cognome ");
 			parameterMap.put("cognome", "%" + example.getCognome() + "%");
 		}
-		if(example.getUsername().isEmpty()) {
+		if(!example.getUsername().isEmpty()) {
 			whereClause.add(" u.username like :username ");
 			parameterMap.put("username", "%" + example.getUsername() + "%");
 		}
