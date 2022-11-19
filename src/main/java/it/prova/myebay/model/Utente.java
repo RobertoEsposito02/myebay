@@ -143,6 +143,22 @@ public class Utente {
 	public void setStato(StatoUtente stato) {
 		this.stato = stato;
 	}
+	
+	public List<Annuncio> getAnnunci() {
+		return annunci;
+	}
+
+	public void setAnnunci(List<Annuncio> annunci) {
+		this.annunci = annunci;
+	}
+
+	public List<Aquisto> getAquisti() {
+		return aquisti;
+	}
+
+	public void setAquisti(List<Aquisto> aquisti) {
+		this.aquisti = aquisti;
+	}
 
 	public boolean isAdmin() {
 		for (Ruolo ruoloItem : ruoli) {

@@ -1,49 +1,31 @@
-package it.prova.myebay.model;
+package it.prova.myebay.dto.annuncio;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
+import it.prova.myebay.model.Utente;
 
-@Entity
-@Table(name = "annuncio")
-public class Annuncio {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+public class AnnuncioDTO {
 	private Long id;
-	@Column(name = "testoannuncio")
 	private String testoAnnuncio;
-	@Column(name = "prezzo")
 	private Integer prezzo;
-	@Column(name = "data")
 	private Date data;
-	@Column(name = "aperto")
 	private boolean aperto;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "utente_id", nullable = false)
+
 	private Utente utenteInserimento;
-	
-	@ManyToMany
-	@JoinTable(name = "annuncio_categoria", joinColumns = @JoinColumn(name = "annuncio_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "categoria_id", referencedColumnName = "ID"))
+
 	private Set<Categoria> categorie = new HashSet<>();
-	
-	public Annuncio() {
+
+	public AnnuncioDTO() {
 	}
 
-	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Utente utenteInserimento) {
+	public AnnuncioDTO(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto,
+			Utente utenteInserimento) {
 		super();
 		this.id = id;
 		this.testoAnnuncio = testoAnnuncio;
@@ -108,6 +90,15 @@ public class Annuncio {
 	public void setCategorie(Set<Categoria> categorie) {
 		this.categorie = categorie;
 	}
-	
-	
+
+	public static AnnuncioDTO buildAnnuncioFromModel(Annuncio annuncioModel) {
+		return new AnnuncioDTO(annuncioModel.getId(), annuncioModel.getTestoAnnuncio(), annuncioModel.getPrezzo(),
+				annuncioModel.getData(), annuncioModel.isAperto(), annuncioModel.getUtenteInserimento());
+	}
+
+	public static List<AnnuncioDTO> createAnnuncioDTOListFromModelList(List<Annuncio> annuncioList){
+		return annuncioList.stream().map(annuncioEntity -> {
+			return AnnuncioDTO.buildAnnuncioFromModel(annuncioEntity);
+		}).collect(Collectors.toList());
+	}
 }
