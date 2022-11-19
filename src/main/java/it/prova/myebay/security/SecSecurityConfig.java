@@ -37,6 +37,8 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     	 http.authorizeRequests()
          .antMatchers("/assets/**").permitAll()
          .antMatchers("/login").permitAll()
+         .antMatchers("/home").permitAll()
+         .antMatchers("/annuncio/**").permitAll()
          .antMatchers("/utente/**").hasRole("ADMIN")
          .antMatchers("/**").hasAnyRole("ADMIN", "CLASSIC_USER")
          //.antMatchers("/anonymous*").anonymous()
@@ -45,7 +47,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
          	.formLogin()
          	.loginPage("/login")
-         	//.defaultSuccessUrl("/home",true)
+         	.defaultSuccessUrl("/home",true)
          	//uso un custom handler perché voglio mettere delle user info in session
          	.successHandler(successHandler)
          	.failureUrl("/login?error=true")

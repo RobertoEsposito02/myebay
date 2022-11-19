@@ -1,7 +1,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header>
   <!-- Fixed navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark bg-primary" aria-label="Eighth navbar example">
+ <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Eighth navbar example">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,9 +15,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
@@ -37,14 +35,24 @@
 		        </div>
 		      </li>
 		   </sec:authorize>
+		   
+		   
         </ul>
       </div>
-      <sec:authorize access="isAuthenticated()">
-	      <div class="col-md-3 text-end">
-	        <p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
-	    	 <a href="${pageContext.request.contextPath}/logout">Logout</a></p>
+      <c:if test="${userInfo == null}">
+	   	  <div class="col-md-3 text-end" >
+	    	<a class="text-light" style="text-decoration: none" href="${pageContext.request.contextPath}/login">Login</a>
 	      </div>
-      </sec:authorize>
+	  </c:if>
+      
+      <c:if test="${userInfo != null}">
+      	<sec:authorize access="isAuthenticated()">
+	   	  <div class="col-md-3 text-end" >
+	       	<p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
+	    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/logout">Logout</a></p>
+	      </div>
+	   	</sec:authorize>
+	  </c:if>
     </div>
   </nav>
   

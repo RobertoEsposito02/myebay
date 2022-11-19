@@ -9,7 +9,7 @@
 	   
 	   <title>MyEbay</title>
 	 </head>
-	   <body class="d-flex flex-column h-100">
+	   <body class="d-flex flex-column h-100" style="background-color: #08082b;">
 	   		
 	   		<!-- #####################################  -->
 	   		<!-- elementi grafici per le features in basso  -->
@@ -41,62 +41,114 @@
 			
 			<!-- Begin page content -->
 			<main class="flex-shrink-0">
-			  <div class="container">
+			  <div class="container" >
 			  
 			  	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none':'' }" role="alert">
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 			    
-			     <div class="p-5 mb-4 bg-light rounded-3">
-				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto su MyEbay</h1>
-				        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. </p>
-				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/regista/search">Vai a Ricerca</a>
+			     <div class="p-5 mb-4 rounded-5" style="background-color: #03031a;">
+				      <div class="container-fluid py-5" >
+				        <h1 class="display-5 fw-bold text-info">Benvenuto su MyEbay</h1>
+				        <p class="col-md-10 fs-4" style="color: #4286ad;">Approfitta delle nuove offerte e cerca quello che più ti interessa.<br> 
+				        	Ti basta scorrere verso il basso e potrai trovare una sezione apposita per la ricerca.</p>
+				        <!--   a class="btn btn-info btn-lg" href="${pageContext.request.contextPath}/regista/search">Vai a Ricerca</a -->
 				      </div>
 			    </div>
 			    
 			  </div>
 			  
-			  <!--  features di bootstrap 'Columns with icons'  -->
+			  <div class="container">
+	
+			<!-- ricerca annunci  -->
+			<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+			  ${errorMessage}
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			
+			<div class='card mb-5' >
+			    <div class='card-header' style="background-color: #03031a;">
+			        <h5 class="text-info">Ricerca Annunci</h5> 
+			    </div>
+			    <div class='card-body'>
+	
+						<form method="post" action="${pageContext.request.contextPath}/utente/list" class="row g-3">
+						
+							<div class="col-md-6">
+								<label for="testoAnnuncio" class="form-label">Cosa stai cercando:</label>
+								<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire cosa si vuole ricercare" >
+							</div>
+							
+							<div class="col-md-6">
+								<label for="prezzo" class="form-label">Prezzo</label>
+								<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
+							</div>
+							
+							<div class="col-md-3">
+								<label for="stato" class="form-label">Categoria</label>
+								    <select class="form-select " id="stato" name="stato" >
+								    	<option value="" selected> - Selezionare - </option>
+								      	<option value="ATTIVO" >ATTIVO</option>
+								    	<option value="CREATO">CREATO</option>
+								      	<option value="DISABILITATO" >DISABILITATO</option>
+							    	</select>
+							</div>
+							
+							<div class="col-12">	
+								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-info text-light">Conferma</button>
+								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
+							</div>
+	
+							
+						</form>
+			    
+				<!-- end card-body -->			   
+			    </div>
+			</div>	
+	
+		</div>
+			  <!--  
 			  <div class="container px-4 py-5" id="featured-3">
 			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
 			      <div class="feature col">
-			        <div class="feature-icon bg-primary bg-gradient">
+			        <div class="feature-icon bg-info bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
 			        </div>
 			        <h2>Ricerca Registi</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a href="${pageContext.request.contextPath}/regista/search" class="icon-link">
+			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/search" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
 			      <div class="feature col">
-			        <div class="feature-icon bg-primary bg-gradient">
+			        <div class="feature-icon bg-info bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
 			        <h2>Inserisci Nuovo Regista</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a href="${pageContext.request.contextPath}/regista/insert" class="icon-link">
+			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/insert" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
 			      <div class="feature col">
-			        <div class="feature-icon bg-primary bg-gradient">
+			        <div class="feature-icon bg-info bg-gradient">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
 			        <h2>Ricerca Film</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a href="${pageContext.request.contextPath}/film/search" class="icon-link">
+			        <a style="text-decoration: none;" href="${pageContext.request.contextPath}/film/search" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
 			    </div>
 			  </div>
-			  
+			  -->
 			</main>
 			
 			<!-- Footer -->
