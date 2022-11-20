@@ -117,5 +117,10 @@ public class UtenteController {
 		utenteService.changeUserAbilitation(idUtente);
 		return "redirect:/utente";
 	}
+	
+	@GetMapping("/personalpage")
+	public String goToPersonalPage() {
+		return "utente/personalpage";
+	}
 
 }

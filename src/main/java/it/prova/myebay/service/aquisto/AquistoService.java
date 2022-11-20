@@ -14,4 +14,6 @@ public interface AquistoService {
 	public void inserisciNuovo(Aquisto aquistoInstance);
 
 	public void rimuovi(Long idToDelete);
+	
+	public List<Aquisto> trovaIMieiAquisti();
 }

@@ -2,8 +2,14 @@
 <html lang="it" class="h-100" >
 	 <head>
 	 
+	 <style>
+	 		.pop{transition: 1s;}
+			.pop:hover{transform:scale(1.05) }
+			.pd{padding-top: 70px}
+		</style>
+	 
 	 	<!-- Common imports in pages -->
-	 	<jsp:include page="./header.jsp" />
+	 	<jsp:include page="../header.jsp" />
 		<!-- Custom styles per le features di bootstrap 'Columns with icons' -->
 	   <link href="${pageContext.request.contextPath}/assets/css/features.css" rel="stylesheet">
 	   
@@ -36,7 +42,7 @@
 	   
 	   
 	   		<!-- Fixed navbar -->
-	   		<jsp:include page="./navbar.jsp"></jsp:include>
+	   		<jsp:include page="../navbar.jsp"></jsp:include>
 	    
 			
 			<!-- Begin page content -->
@@ -55,75 +61,33 @@
 			    
 			     <div class="p-5 mb-4 rounded-5" style="background-color: #03031a;">
 				      <div class="container-fluid py-5" >
-				        <h1 class="display-5 fw-bold text-info">Benvenuto su MyEbay</h1>
-				        <p class="col-md-10 fs-4" style="color: #4286ad;">Approfitta delle nuove offerte e cerca quello che più ti interessa.<br> 
-				        	Ti basta scorrere verso il basso e potrai trovare una sezione apposita per la ricerca.</p>
+				        <h1 class="display-5 fw-bold text-info">Benvenuto sulla tua pagina personale</h1>
+				        <p class="col-md-10 fs-4" style="color: #4286ad;">Qui avrai la possibilità di visualizzare tutti i tuoi aquisti, dal primo all'ultimo.<br> 
+				        	Avrai anche la possibilità di visionare i tuoi annunci, inserirne di nuovi, modificarli e/o eliminarli in caso siano ancora aperti.</p>
 				        <!--   a class="btn btn-info btn-lg" href="${pageContext.request.contextPath}/regista/search">Vai a Ricerca</a -->
 				      </div>
 			    </div>
 			    
 			  </div>
 			  
-			  <div class="container">
-	
-			<!-- ricerca annunci  -->
-			<div class='card mb-5' id="ricercaAnnunci">
-			    <div class='card-header' style="background-color: #03031a;">
-			        <h5 class="text-info">Ricerca Annunci</h5> 
-			    </div>
-			    <div class='card-body'>
-	
-						<form method="post" action="${pageContext.request.contextPath}/annuncio/list" class="row g-3">
-						
-							<div class="col-md-6">
-								<label for="testoAnnuncio" class="form-label">Cosa stai cercando:</label>
-								<input type="text" name="testoAnnuncio" id="testoAnnuncio" class="form-control" placeholder="Inserire cosa si vuole ricercare" >
-							</div>
-							
-							<div class="col-md-6">
-								<label for="prezzo" class="form-label">Prezzo</label>
-								<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
-							</div>
-							<!--  
-							<div class="col-md-3">
-								<label for="stato" class="form-label">Categoria</label>
-								    <select class="form-select " id="stato" name="stato" >
-								    	<option value="" selected> - Selezionare - </option>
-								      	<option value="ATTIVO" >ATTIVO</option>
-								    	<option value="CREATO">CREATO</option>
-								      	<option value="DISABILITATO" >DISABILITATO</option>
-							    	</select>
-							</div>
-							-->
-							<div class="col-12">	
-								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-info text-light">Conferma</button>
-								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
-							</div>
-	
-							
-						</form>
 			    
-				<!-- end card-body -->			   
-			    </div>
-			</div>	
-	
-		</div>
-			  <!--  
 			  <div class="container px-4 py-5" id="featured-3">
-			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
+			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 justify-content-around">
+			      
+			      <div class="feature col pop rounded-5" style="background-color: #03031a; width: 32%">
+			        <div class="feature-icon bg-info bg-gradient" style="margin-top: 9px">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
 			        </div>
-			        <h2>Ricerca Registi</h2>
-			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/search" class="icon-link text-info">
+			        <h2 class="text-light">Visualizza Aquisti</h2>
+			        <p class="text-light">Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+			        <a style="text-decoration: none; margin-bottom: 9px" href="${pageContext.request.contextPath}/aquisto/list" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
+			      
+			      <div class="feature col pop rounded-5" style="background-color: #03031a; width: 32%">
+			        <div class="feature-icon bg-info bg-gradient" style="margin-top: 9px">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
 			        <h2>Inserisci Nuovo Regista</h2>
@@ -133,8 +97,9 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
+			      
+			      <div class="feature col pop rounded-5" style="background-color: #03031a; width: 32%">
+			        <div class="feature-icon bg-info bg-gradient" style="margin-top: 9px">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
 			        </div>
 			        <h2>Ricerca Film</h2>
@@ -144,12 +109,12 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>
 			      </div>
+			      
 			    </div>
 			  </div>
-			  -->
 			</main>
 			
 			<!-- Footer -->
-			<jsp:include page="./footer.jsp" />
+			<jsp:include page="../footer.jsp" />
 	  </body>
 </html>

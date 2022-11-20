@@ -3,17 +3,24 @@ package it.prova.myebay.service.aquisto;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.myebay.model.Aquisto;
+import it.prova.myebay.model.Utente;
 import it.prova.myebay.repository.aquisto.AquistoRepository;
+import it.prova.myebay.repository.utente.UtenteRepository;
 
 @Service
 public class AquistoServiceImpl implements AquistoService{
 
 	@Autowired
 	private AquistoRepository repository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -43,6 +50,14 @@ public class AquistoServiceImpl implements AquistoService{
 	@Transactional
 	public void rimuovi(Long idToDelete) {
 		repository.deleteById(idToDelete);
+	}
+
+	@Override
+	public List<Aquisto> trovaIMieiAquisti() {
+		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+		
+		return repository.findByidConUtente(utente.getId());
 	}
 
 }

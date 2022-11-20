@@ -7,15 +7,17 @@
 	 	<jsp:include page="./header.jsp" />
 		<title>Error page</title>
 	</head>
-	<body class="d-flex flex-column h-100">
+	<body class="d-flex flex-column h-100" style="background-color: #08082b;">
 		<!-- Fixed navbar -->
    		<jsp:include page="./navbar.jsp"></jsp:include>
 		<main class="flex-shrink-0">
 		
-			<div class="container">
+			<div class="container justify-content-center"  >
 					
-					<div class="card border-danger" >
-					  <div class="card-header">Oooops......</div>
+					<div class="card border-danger">
+					  <div class="card-header" style="background-color: #03031a;">
+					  	<h4 class="text-info" >Oooops......</h4>
+					  </div>
 					  <div class="card-body text-danger">
 					    <h5 class="card-title">Piccolo Problemino</h5>
 					    <p class="card-text">Abbiamo avuto un piccolo problemino... Ci scusiamo per l'inconveniente.</p>

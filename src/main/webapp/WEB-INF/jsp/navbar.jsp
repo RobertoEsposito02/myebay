@@ -43,15 +43,17 @@
 	    	<a class="text-light" style="text-decoration: none" href="${pageContext.request.contextPath}/login">Login</a>
 	      </div>
 	  </c:if>
-      
       <c:if test="${userInfo != null}">
       	<sec:authorize access="isAuthenticated()">
-	   	  <div class="col-md-3 text-end" >
+	   	  <div class="col-md-3 text-end " >
 	       	<p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
 	    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/logout">Logout</a></p>
 	      </div>
 	   	</sec:authorize>
 	  </c:if>
+	  <div class="col-md-1 text-end" >
+	    	<a class="text-light" style="text-decoration: none" href="${pageContext.request.contextPath}/utente/personalpage">Account</a>
+	    </div>
     </div>
   </nav>
   
