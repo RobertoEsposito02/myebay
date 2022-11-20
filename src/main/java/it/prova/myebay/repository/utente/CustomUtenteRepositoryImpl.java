@@ -38,8 +38,8 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository{
 			parameterMap.put("username", "%" + example.getUsername() + "%");
 		}
 		if(example.getDateCreated() != null) {
-			whereClause.add(" u.dataCreated >= :dataCreated");
-			parameterMap.put("dataCreated", example.getDateCreated());
+			whereClause.add(" u.dateCreated >= :dateCreated");
+			parameterMap.put("dateCreated","'" + example.getDateCreated().toInstant()+ "'");
 		}
 		if(example.getStato() != null) {
 			whereClause.add(" u.stato like :stato");

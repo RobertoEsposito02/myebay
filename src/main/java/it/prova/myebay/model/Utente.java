@@ -38,7 +38,9 @@ public class Utente {
 	private String cognome;
 	@Column(name = "dateCreated")
 	private Date dateCreated;
-
+	@Column(name = "creditoresiduo")
+	private Integer creditoResiduo;
+	
 	@Enumerated(EnumType.STRING)
 	private StatoUtente stato;
 
@@ -67,6 +69,15 @@ public class Utente {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dateCreated = dateCreated;
+	}
+	
+	public Utente(String username, String password, String nome, String cognome, Date dateCreated, Integer creditoResiduo) {
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateCreated = dateCreated;
+		this.creditoResiduo = creditoResiduo;
 	}
 
 	public Utente(Long id, String username, String password, String nome, String cognome, Date dateCreated,
@@ -158,6 +169,14 @@ public class Utente {
 
 	public void setAquisti(List<Aquisto> aquisti) {
 		this.aquisti = aquisti;
+	}
+
+	public Integer getCreditoResiduo() {
+		return creditoResiduo;
+	}
+
+	public void setCreditoResiduo(Integer creditoResiduo) {
+		this.creditoResiduo = creditoResiduo;
 	}
 
 	public boolean isAdmin() {

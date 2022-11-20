@@ -33,6 +33,19 @@ public class Aquisto {
 	public Aquisto() {
 	}
 
+	public Aquisto(String descrizione, Date data, Integer prezzo) {
+		this.descrizione = descrizione;
+		this.data = data;
+		this.prezzo = prezzo;
+	}
+	
+	public Aquisto(String descrizione, Date data, Integer prezzo, Utente utenteAquirente) {
+		this.descrizione = descrizione;
+		this.data = data;
+		this.prezzo = prezzo;
+		this.utenteAquirente = utenteAquirente;
+	}
+	
 	public Aquisto(Long id, String descrizione, Date data, Integer prezzo, Utente utenteAquirente) {
 		super();
 		this.id = id;

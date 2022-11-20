@@ -47,6 +47,11 @@
 				  ${errorMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
+				<div class="rouded-3 alert alert-success alert-dismissible fade show ${successMessage==null?'d-none':'' }" role="alert">
+				  ${successMessage}
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
+				</div>
+				
 			    
 			     <div class="p-5 mb-4 rounded-5" style="background-color: #03031a;">
 				      <div class="container-fluid py-5" >
@@ -69,7 +74,7 @@
 			  </button>
 			</div>
 			
-			<div class='card mb-5' >
+			<div class='card mb-5' id="ricercaAnnunci">
 			    <div class='card-header' style="background-color: #03031a;">
 			        <h5 class="text-info">Ricerca Annunci</h5> 
 			    </div>

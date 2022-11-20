@@ -14,7 +14,7 @@
 	   
 	   <title>Inserisci Nuovo Elemento</title>
 	 </head>
-	   <body class="d-flex flex-column h-100">
+	   <body class="d-flex flex-column h-100" style="background-color: #08082b;">
 	   
 	   		<!-- Fixed navbar -->
 	   		<jsp:include page="../navbar.jsp"></jsp:include>
@@ -22,7 +22,7 @@
 			
 			<!-- Begin page content -->
 			<main class="flex-shrink-0">
-			  <div class="container">
+			  <div class="container mb-5">
 			  
 			  		<%-- se l'attributo in request ha errori --%>
 					<spring:hasBindErrors  name="insert_utente_attr">
@@ -38,8 +38,8 @@
 					</div>
 			  
 			  <div class='card'>
-				    <div class='card-header'>
-				        <h5>Inserisci nuovo elemento</h5> 
+				    <div class='card-header' style="background-color: #08082b;">
+				        <h5 class="text-info">Inserisci nuovo elemento</h5> 
 				    </div>
 				    <div class='card-body'>
 		

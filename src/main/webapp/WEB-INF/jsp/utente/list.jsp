@@ -24,8 +24,8 @@
 			</div>
 			
 			<div class='card'>
-			    <div class='card-header'>
-			        <h5>Lista dei risultati</h5> 
+			    <div class='card-header' style="background-color: #08082b;">
+			        <h5 class="text-info">Lista dei risultati</h5> 
 			    </div>
 			    <div class='card-body'>
 			    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/utente/insert">Add New</a>

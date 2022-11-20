@@ -46,14 +46,14 @@ public class MyebayApplication implements CommandLineRunner {
 		}
 
 		if (utenteServiceInstance.findByUsername("admin") == null) {
-			Utente admin = new Utente("admin", "admin", "Mario", "Rossi", new Date());
+			Utente admin = new Utente("admin", "admin", "Mario", "Rossi", new Date(),1000);
 			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
 			utenteServiceInstance.inserisciNuovo(admin);
 			utenteServiceInstance.changeUserAbilitation(admin.getId());
 		}
 
 		if (utenteServiceInstance.findByUsername("user") == null) {
-			Utente classicUser = new Utente("user", "user", "Antonio", "Verdi", new Date());
+			Utente classicUser = new Utente("user", "user", "Antonio", "Verdi", new Date(),100);
 			classicUser.getRuoli()
 					.add(ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
 			utenteServiceInstance.inserisciNuovo(classicUser);
@@ -61,7 +61,7 @@ public class MyebayApplication implements CommandLineRunner {
 		}
 
 		if (utenteServiceInstance.findByUsername("user1") == null) {
-			Utente classicUser1 = new Utente("user1", "user1", "Antonioo", "Verdii", new Date());
+			Utente classicUser1 = new Utente("user1", "user1", "Antonioo", "Verdii", new Date(),10);
 			classicUser1.getRuoli()
 					.add(ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
 			utenteServiceInstance.inserisciNuovo(classicUser1);
@@ -69,7 +69,7 @@ public class MyebayApplication implements CommandLineRunner {
 		}
 
 		if (utenteServiceInstance.findByUsername("user2") == null) {
-			Utente classicUser2 = new Utente("user2", "user2", "Antoniooo", "Verdiii", new Date());
+			Utente classicUser2 = new Utente("user2", "user2", "Antoniooo", "Verdiii", new Date(),1);
 			classicUser2.getRuoli()
 					.add(ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
 			utenteServiceInstance.inserisciNuovo(classicUser2);

@@ -28,8 +28,8 @@
 			</div>
 			
 			<div class='card'>
-			    <div class='card-header'>
-			        <h5>Ricerca elementi</h5> 
+			    <div class='card-header' style="background-color: #08082b;">
+			        <h5 class="text-info">Ricerca elementi</h5> 
 			    </div>
 			    <div class='card-body'>
 	
