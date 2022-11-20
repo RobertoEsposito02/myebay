@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.myebay.exception.CreditoNonSufficienteException;
+import it.prova.myebay.exception.LoginNonEffettuatoException;
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Aquisto;
 import it.prova.myebay.model.Utente;
@@ -72,26 +74,30 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 	public void executeCompra(Long idAnnuncio) {
 		Annuncio annuncio = repository.findByIdConCategorie(idAnnuncio).orElse(null);
 		
-		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
-		
-		if(annuncio.getPrezzo() <= utente.getCreditoResiduo()) {
-			/*scalo i soldi dal conto dell utente che compra*/
-			utente.setCreditoResiduo(utente.getCreditoResiduo()-annuncio.getPrezzo());
-			/*creo un nuovo aquisto con i dati dell'annuncio*/
-			Aquisto aquisto = new Aquisto(annuncio.getTestoAnnuncio(),new Date(), annuncio.getPrezzo(),utente);
-			aquistoRepository.save(aquisto);
-			/*aggiungo l'aquisto all'utente che compra*/
-			utente.getAquisti().add(aquisto);
-			utenteRepository.save(utente);
-			/*aggiungo i soldi al conto del venditore */
-			annuncio.getUtenteInserimento().setCreditoResiduo(annuncio.getUtenteInserimento().getCreditoResiduo()+annuncio.getPrezzo());
-			/*cambio lo stato dell'annuncio da aperto a chiuso */
-			annuncio.setAperto(false);
-			repository.save(annuncio);
+		if(SecurityContextHolder.getContext().getAuthentication().getName() != null) {
+			UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+			if(annuncio.getPrezzo() <= utente.getCreditoResiduo()) {
+				/*scalo i soldi dal conto dell utente che compra*/
+				utente.setCreditoResiduo(utente.getCreditoResiduo()-annuncio.getPrezzo());
+				/*creo un nuovo aquisto con i dati dell'annuncio*/
+				Aquisto aquisto = new Aquisto(annuncio.getTestoAnnuncio(),new Date(), annuncio.getPrezzo(),utente);
+				aquistoRepository.save(aquisto);
+				/*aggiungo l'aquisto all'utente che compra*/
+				utente.getAquisti().add(aquisto);
+				utenteRepository.save(utente);
+				/*aggiungo i soldi al conto del venditore */
+				annuncio.getUtenteInserimento().setCreditoResiduo(annuncio.getUtenteInserimento().getCreditoResiduo()+annuncio.getPrezzo());
+				/*cambio lo stato dell'annuncio da aperto a chiuso */
+				annuncio.setAperto(false);
+				repository.save(annuncio);
+			}else {
+				throw new CreditoNonSufficienteException("credito non sufficiente");
+			}
 		}else {
-			throw new RuntimeException("credito non sufficiente");
+			throw new LoginNonEffettuatoException("Login non effettuato");
 		}
+		
 		
 	}
 
