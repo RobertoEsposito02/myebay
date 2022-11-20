@@ -51,7 +51,7 @@ public class AnnuncioController {
 			return "/login";
 		}
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
-		return "redirect:/home";
+		return "redirect:/aquisto/list";
 	}
 
 }

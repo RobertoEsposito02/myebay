@@ -25,7 +25,7 @@
 			
 			<div class='card'>
 			    <div class='card-header' style="background-color: #08082b;">
-			        <h5 class="text-info" >Lista dei risultati</h5> 
+			        <h5 class="text-info" >Lista risultati dei tuoi aquisti</h5> 
 			    </div>
 			    <div class='card-body'>
 			    	<a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' >
