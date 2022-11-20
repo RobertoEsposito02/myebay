@@ -16,4 +16,6 @@ public interface AquistoService {
 	public void rimuovi(Long idToDelete);
 	
 	public List<Aquisto> trovaIMieiAquisti();
+	
+	public Aquisto caricaSingoloAquistoEager();
 }

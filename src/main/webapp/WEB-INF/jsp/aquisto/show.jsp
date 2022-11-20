@@ -17,48 +17,36 @@
 	  	<div class="container">
 			
 			<div class='card'>
-			    <div class='card-header' style="background-color: #08082b;">
+			    <div class='card-header' style="background-color: #08082b;"> 
 			        <h4 class="text-info">Visualizza dettaglio</h4>
 			    </div>
 			
 			    <div class='card-body'>
 			    	<dl class="row">
 					  <dt class="col-sm-2 text-right">Id:</dt>
-					  <dd class="col-sm-10">${show_utente_attr.id}</dd>
-			    	</dl>
-			    	
-			    	<dl class="row">
-					  <dt class="col-sm-2 text-right">Nome:</dt>
-					  <dd class="col-sm-10">${show_utente_attr.nome}</dd>
+					  <dd class="col-sm-10">${show_aquisto_attr.id}</dd>
 			    	</dl>
 			    	
 			    	<dl class="row">
 					  <dt class="col-sm-2 text-right">Cognome:</dt>
-					  <dd class="col-sm-10">${show_utente_attr.cognome}</dd>
+					  <dd class="col-sm-10">${show_aquisto_attr.descrizione}</dd>
 			    	</dl>
 			    	
 			    	<dl class="row">
 					  <dt class="col-sm-2 text-right">Username:</dt>
-					  <dd class="col-sm-10">${show_utente_attr.username}</dd>
+					  <dd class="col-sm-10">${show_aquisto_attr.prezzo}</dd>
 			    	</dl>
 			    	
 			    	<dl class="row">
 					  <dt class="col-sm-2 text-right">Data Creazione:</dt>
-					  <dd class="col-sm-10"><fmt:formatDate type = "date" value = "${show_utente_attr.dateCreated}" /></dd>
-			    	</dl>
-			    	
-			    	<dl class="row">
-			    		<dt class="col-sm-2 text-right">Ruolo:</dt>
-			    		<c:forEach items="${show_utente_attr.ruoli}" var="ruoloItem">
-			    			<dd class="col-sm-2">${ruoloItem.descrizione} </dd>
-			    		</c:forEach>
+					  <dd class="col-sm-10"><fmt:formatDate type = "date" value = "${show_aquisto_attr.data}" /></dd>
 			    	</dl>
 			    	
 			    <!-- end card body -->
 			    </div>
 			    
 			    <div class='card-footer'>
-			        <a href="${pageContext.request.contextPath }/utente/" class='btn btn-outline-secondary' style='width:80px'>
+			        <a href="${pageContext.request.contextPath }/aquisto/list" class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>
 			    </div>

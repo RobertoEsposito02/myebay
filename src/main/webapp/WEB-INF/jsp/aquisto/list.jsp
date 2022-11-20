@@ -49,7 +49,7 @@
 										<td>${aquistoItem.data }</td>
 										<td>${aquistoItem.prezzo }</td>
 										<td>
-											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Visualizza</a>
+											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/aquisto/show/${aquistoItem.id }">Visualizza</a>
 										</td>
 									</tr>
 								</c:forEach>

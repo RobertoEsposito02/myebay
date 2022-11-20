@@ -60,4 +60,10 @@ public class AquistoServiceImpl implements AquistoService{
 		return repository.findByidConUtente(utente.getId());
 	}
 
+	@Override
+	public Aquisto caricaSingoloAquistoEager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
