@@ -21,4 +21,6 @@ public interface AnnuncioService {
 	public Annuncio caricaSingoloEager(Long id);
 	
 	public void executeCompra(Long idAnnuncio);
+	
+	public List<Annuncio> caricaTuttiIMieiAnnunci();
 }

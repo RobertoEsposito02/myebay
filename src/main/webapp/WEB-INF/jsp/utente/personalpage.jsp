@@ -78,8 +78,8 @@
 			        <div class="feature-icon bg-info bg-gradient" style="margin-top: 9px">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
 			        </div>
-			        <h2 class="text-light">Visualizza Aquisti</h2>
-			        <p class="text-light">Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+			        <h2 class="text-light">I miei Aquisti</h2>
+			        <p class="text-light">Tramite questa funzinoe si ha la possibilità di visionare i propri aquisti effetuati durante il corso del tempo. Visionando quindi il prezzo, la data di aquisto, e la descrizione del prodotto.</p>
 			        <a style="text-decoration: none; margin-bottom: 9px" href="${pageContext.request.contextPath}/aquisto/list" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
@@ -90,9 +90,9 @@
 			        <div class="feature-icon bg-info bg-gradient" style="margin-top: 9px">
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
-			        <h2>Inserisci Nuovo Regista</h2>
+			        <h2 class="text-light">I miei Annunci</h2>
 			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/insert" class="icon-link text-info">
+			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/annuncio/listMyAnnunci" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
 			        </a>

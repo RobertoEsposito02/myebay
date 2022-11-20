@@ -101,4 +101,11 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		
 	}
 
+	@Override
+	public List<Annuncio> caricaTuttiIMieiAnnunci() {
+		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+		return repository.findAllMyAnnuncio(utente.getId());
+	}
+
 }

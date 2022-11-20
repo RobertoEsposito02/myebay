@@ -54,4 +54,9 @@ public class AnnuncioController {
 		return "redirect:/aquisto/list";
 	}
 
+	@GetMapping("/listMyAnnunci")
+	public String listAllMyAnnunci(Model model) {
+		model.addAttribute("list_annuncio_attr",annuncioService.caricaTuttiIMieiAnnunci());
+		return "annuncio/list";
+	}
 }
