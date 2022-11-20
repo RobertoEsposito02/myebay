@@ -46,4 +46,9 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		repository.deleteById(idToDelete);
 	}
 
+	@Override
+	public List<Annuncio> findByExample(Annuncio example) {
+		return repository.findByExample(example);
+	}
+
 }

@@ -26,7 +26,8 @@
               <li><a class="dropdown-item" href="${pageContext.request.contextPath}/film/insert">Inserisci Film</a></li>
             </ul> 
           </li>
-           <sec:authorize access="hasRole('ADMIN')">
+           <sec:authorize access="isAuthenticated()">
+           	<sec:authorize access="hasRole('ADMIN')">
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestione Utenze</a>
 		        <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -34,6 +35,7 @@
 		          <a class="dropdown-item" href="${pageContext.request.contextPath}/utente/insert">Inserisci Utente</a>
 		        </div>
 		      </li>
+		     </sec:authorize>
 		   </sec:authorize>
 		   
 		   

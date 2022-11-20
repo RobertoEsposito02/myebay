@@ -7,7 +7,7 @@
 	<title>Pagina dei risultati</title>
 	
 </head>
-<body class="d-flex flex-column h-100">
+<body class="d-flex flex-column h-100" style="background-color: #08082b;">
 	<jsp:include page="../navbar.jsp" />
 	
 	<!-- Begin page content -->

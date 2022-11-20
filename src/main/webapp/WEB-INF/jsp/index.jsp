@@ -75,7 +75,7 @@
 			    </div>
 			    <div class='card-body'>
 	
-						<form method="post" action="${pageContext.request.contextPath}/utente/list" class="row g-3">
+						<form method="post" action="${pageContext.request.contextPath}/annuncio/list" class="row g-3">
 						
 							<div class="col-md-6">
 								<label for="testoAnnuncio" class="form-label">Cosa stai cercando:</label>
@@ -86,7 +86,7 @@
 								<label for="prezzo" class="form-label">Prezzo</label>
 								<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
 							</div>
-							
+							<!--  
 							<div class="col-md-3">
 								<label for="stato" class="form-label">Categoria</label>
 								    <select class="form-select " id="stato" name="stato" >
@@ -96,7 +96,7 @@
 								      	<option value="DISABILITATO" >DISABILITATO</option>
 							    	</select>
 							</div>
-							
+							-->
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-info text-light">Conferma</button>
 								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">

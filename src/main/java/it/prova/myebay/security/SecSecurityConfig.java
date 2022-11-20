@@ -43,12 +43,12 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
          .antMatchers("/**").hasAnyRole("ADMIN", "CLASSIC_USER")
          //.antMatchers("/anonymous*").anonymous()
          .anyRequest().authenticated()
-         .and().exceptionHandling().accessDeniedPage("/accessDenied")
+         .and()
+         	.exceptionHandling().accessDeniedPage("/accessDenied")
          .and()
          	.formLogin()
          	.loginPage("/login")
          	.defaultSuccessUrl("/home",true)
-         	//uso un custom handler perché voglio mettere delle user info in session
          	.successHandler(successHandler)
          	.failureUrl("/login?error=true")
          	.permitAll()
@@ -60,6 +60,5 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
          .and()
             .csrf()
             .disable();
-//         
     }
 }
