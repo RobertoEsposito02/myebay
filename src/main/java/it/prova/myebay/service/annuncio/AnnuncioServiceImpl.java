@@ -27,7 +27,6 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		return repository.findById(id).orElse(null);
 	}
 
-
 	@Override
 	@Transactional
 	public void aggiorna(Annuncio annuncioInstance) {
@@ -49,6 +48,11 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 	@Override
 	public List<Annuncio> findByExample(Annuncio example) {
 		return repository.findByExample(example);
+	}
+
+	@Override
+	public Annuncio caricaSingoloEager(Long id) {
+		return repository.findByIdConCategorie(id).orElse(null);
 	}
 
 }

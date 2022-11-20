@@ -43,6 +43,21 @@ public class Annuncio {
 	public Annuncio() {
 	}
 
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto) {
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.data = data;
+		this.aperto = aperto;
+	}
+	
+	public Annuncio(String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Utente utenteInserimento) {
+		this.testoAnnuncio = testoAnnuncio;
+		this.prezzo = prezzo;
+		this.data = data;
+		this.aperto = aperto;
+		this.utenteInserimento = utenteInserimento;
+	}
+	
 	public Annuncio(Long id, String testoAnnuncio, Integer prezzo, Date data, boolean aperto, Utente utenteInserimento) {
 		super();
 		this.id = id;

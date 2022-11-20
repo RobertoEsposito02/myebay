@@ -45,4 +45,9 @@ public class CategoriaServiceImpl implements CategoriaService{
 		repository.deleteById(idToDelete);
 	}
 
+	@Override
+	public Categoria cercaCategoriaByDescrizione(String descrizoine) {
+		return repository.findByDescrizione(descrizoine).orElse(null);
+	}
+
 }

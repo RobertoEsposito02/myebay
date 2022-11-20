@@ -7,8 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Ruolo;
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.service.annuncio.AnnuncioService;
+import it.prova.myebay.service.categoria.CategoriaService;
 import it.prova.myebay.service.ruolo.RuoloService;
 import it.prova.myebay.service.utente.UtenteService;
 
@@ -20,6 +24,12 @@ public class MyebayApplication implements CommandLineRunner {
 	
 	@Autowired
 	private UtenteService utenteServiceInstance;
+	
+	@Autowired
+	private AnnuncioService annuncioService;
+	
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(MyebayApplication.class, args);
@@ -65,7 +75,16 @@ public class MyebayApplication implements CommandLineRunner {
 			utenteServiceInstance.inserisciNuovo(classicUser2);
 			utenteServiceInstance.changeUserAbilitation(classicUser2.getId());
 		}
-
+		
+		if(categoriaService.cercaCategoriaByDescrizione("Elettronica") == null) {
+			Categoria nuovaCategoria = new Categoria("Elettronica","elettronica");
+			Annuncio annuncio = new Annuncio("Aspirapolvere",70,new Date(),true);
+			categoriaService.inserisciNuovo(nuovaCategoria);
+			annuncio.getCategorie().add(nuovaCategoria);
+			annuncio.setUtenteInserimento(utenteServiceInstance.listAllUtenti().get(0));
+			annuncioService.inserisciNuovo(annuncio);
+			nuovaCategoria.getAnnunci().add(annuncio);
+			categoriaService.aggiorna(nuovaCategoria);
+		}
 	}
-
 }

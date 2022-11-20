@@ -1,6 +1,7 @@
 package it.prova.myebay.service.categoria;
 
 import java.util.List;
+import java.util.Optional;
 
 import it.prova.myebay.model.Categoria;
 
@@ -14,4 +15,6 @@ public interface CategoriaService {
 	public void inserisciNuovo(Categoria categoriaInstance);
 
 	public void rimuovi(Long idToDelete);
+	
+	public Categoria cercaCategoriaByDescrizione(String descrizoine);
 }

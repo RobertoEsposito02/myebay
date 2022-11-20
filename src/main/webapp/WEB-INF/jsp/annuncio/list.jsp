@@ -28,8 +28,8 @@
 			        <h5 class="text-info" >Lista dei risultati</h5> 
 			    </div>
 			    <div class='card-body'>
-			    	<a href="${pageContext.request.contextPath}/utente/search" class='btn btn-outline-secondary' >
-				            <i class='fa fa-chevron-left'></i> Torna alla Ricerca
+			    	<a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' >
+				            <i class='fa fa-chevron-left'></i> Torna alla HomePage
 				        </a>
 			    
 			        <div class='table-responsive'>
@@ -47,7 +47,7 @@
 										<td>${annuncioItem.testoAnnuncio }</td>
 										<td>${annuncioItem.prezzo }</td>
 										<td>
-											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/utente/show/${utenteItem.id }">Visualizza</a>
+											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Visualizza</a>
 										</td>
 									</tr>
 								</c:forEach>
