@@ -47,14 +47,12 @@ public class AnnuncioController {
 			annuncioService.executeCompra(idAnnuncio);
 		}catch (LoginNonEffettuatoException e) {
 			e.printStackTrace();
-			//model.addAttribute("errorMessage", "Bisogna effettuare il login se si vuole aquistare");
-			//return "/login";
 			redirectAttrs.addFlashAttribute("errorMessage", "Bisogna effettuare il login se si vuole aquistare");
 			return "redirect:/login";
 		}catch (CreditoNonSufficienteException e) {
 			e.printStackTrace();
-			model.addAttribute("errorMessage", "Credito non sufficiente");
-			return "/home";
+			redirectAttrs.addFlashAttribute("errorMessage", "Credito non sufficiente");
+			return "redirect:/home";
 		} 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/aquisto/list";

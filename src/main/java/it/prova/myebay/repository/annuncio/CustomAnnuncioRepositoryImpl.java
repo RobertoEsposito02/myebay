@@ -23,7 +23,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		Map<String, Object> parameterValue = new HashMap<>();
 		List<String> whereClause = new ArrayList<>();
 		
-		StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a where aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder("from Annuncio a left join fetch a.utenteInserimento u where aperto = 1 ");
 
 		if(!example.getTestoAnnuncio().isEmpty()) {
 			whereClause.add(" a.testoAnnuncio like :testoAnnuncio ");
@@ -50,7 +50,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		Map<String, Object> parameterValue = new HashMap<>();
 		List<String> whereClause = new ArrayList<>();
 		
-		StringBuilder queryBuilder = new StringBuilder("select a from Annuncio a where not a.id  = :id and aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder("from Annuncio a left join fetch a.utenteInserimento u where not a.id  = :id and aperto = 1 ");
 		parameterValue.put("id", id);
 		
 		if(!example.getTestoAnnuncio().isEmpty()) {

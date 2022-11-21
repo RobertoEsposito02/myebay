@@ -69,7 +69,7 @@ public class MyebayApplication implements CommandLineRunner {
 		}
 
 		if (utenteServiceInstance.findByUsername("user2") == null) {
-			Utente classicUser2 = new Utente("user2", "user2", "Antoniooo", "Verdiii", new Date(),1);
+			Utente classicUser2 = new Utente("user2", "user2", "Antoniooo", "Verdiii", new Date(),2);
 			classicUser2.getRuoli()
 					.add(ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
 			utenteServiceInstance.inserisciNuovo(classicUser2);
@@ -84,6 +84,30 @@ public class MyebayApplication implements CommandLineRunner {
 			annuncio.setUtenteInserimento(utenteServiceInstance.listAllUtenti().get(0));
 			annuncioService.inserisciNuovo(annuncio);
 			nuovaCategoria.getAnnunci().add(annuncio);
+			categoriaService.aggiorna(nuovaCategoria);
+			
+			Annuncio annuncio2 = new Annuncio("Televisore",40,new Date(),true);
+			categoriaService.inserisciNuovo(nuovaCategoria);
+			annuncio2.getCategorie().add(nuovaCategoria);
+			annuncio2.setUtenteInserimento(utenteServiceInstance.listAllUtenti().get(1));
+			annuncioService.inserisciNuovo(annuncio2);
+			nuovaCategoria.getAnnunci().add(annuncio2);
+			categoriaService.aggiorna(nuovaCategoria);
+			
+			Annuncio annuncio3 = new Annuncio("Portatile",40,new Date(),false);
+			categoriaService.inserisciNuovo(nuovaCategoria);
+			annuncio3.getCategorie().add(nuovaCategoria);
+			annuncio3.setUtenteInserimento(utenteServiceInstance.listAllUtenti().get(0));
+			annuncioService.inserisciNuovo(annuncio3);
+			nuovaCategoria.getAnnunci().add(annuncio3);
+			categoriaService.aggiorna(nuovaCategoria);
+			
+			Annuncio annuncio4 = new Annuncio("Cuffie",40,new Date(),true);
+			categoriaService.inserisciNuovo(nuovaCategoria);
+			annuncio4.getCategorie().add(nuovaCategoria);
+			annuncio4.setUtenteInserimento(utenteServiceInstance.listAllUtenti().get(2));
+			annuncioService.inserisciNuovo(annuncio4);
+			nuovaCategoria.getAnnunci().add(annuncio4);
 			categoriaService.aggiorna(nuovaCategoria);
 		}
 	}
