@@ -23,4 +23,6 @@ public interface AnnuncioService {
 	public void executeCompra(Long idAnnuncio);
 	
 	public List<Annuncio> caricaTuttiIMieiAnnunci();
+
+	public List<Annuncio> caricaTuttiGliAnnunciNonMiei(Annuncio example);
 }

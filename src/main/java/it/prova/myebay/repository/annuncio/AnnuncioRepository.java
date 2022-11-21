@@ -15,4 +15,7 @@ public interface AnnuncioRepository extends CrudRepository<Annuncio, Long>, Cust
 	
 	@Query(" from Annuncio a left join fetch a.categorie c left join fetch a.utenteInserimento u where u.id = :id")
 	List<Annuncio> findAllMyAnnuncio(Long id);
+	
+	@Query(" from Annuncio a left join fetch a.categorie c left join fetch a.utenteInserimento u where not u.id = :id")
+	List<Annuncio> findAllAnnunciNotMine(Long id);
 }

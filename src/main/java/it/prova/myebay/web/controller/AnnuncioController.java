@@ -32,7 +32,8 @@ public class AnnuncioController {
 
 	@PostMapping("/list")
 	public String listAllAnnuncio(Annuncio annuncioExample, Model model) {
-		model.addAttribute("list_annuncio_attr", annuncioService.findByExample(annuncioExample));
+		//model.addAttribute("list_annuncio_attr", annuncioService.findByExample(annuncioExample));
+		model.addAttribute("list_annuncio_attr", annuncioService.caricaTuttiGliAnnunciNonMiei(annuncioExample));
 		return "annuncio/list";
 	}
 
