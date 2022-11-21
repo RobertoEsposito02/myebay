@@ -114,4 +114,10 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		return repository.findByExampleNotMyAnnunci(example,utente.getId());
 	}
 
+	@Override
+	@Transactional
+	public void scollegaAnnuncio(Long id) {
+		repository.scollegaAnnuncio(id);
+	}
+
 }

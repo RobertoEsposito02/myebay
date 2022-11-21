@@ -8,4 +8,6 @@ public interface CustomAnnuncioRepository {
 	public List<Annuncio> findByExample(Annuncio example);
 	
 	public List<Annuncio> findByExampleNotMyAnnunci(Annuncio example, Long id);
+	
+	public void scollegaAnnuncio(Long id);
 }

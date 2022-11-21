@@ -73,4 +73,10 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		return query.getResultList();
 	}
 
+	@Override
+	public void scollegaAnnuncio(Long id) {
+		entityManager.createNativeQuery("delete from categoria_annunci where annunci_id = :id").setParameter("id", id).executeUpdate();
+		entityManager.createNativeQuery("delete from annuncio_categoria where annuncio_id = :id").setParameter("id", id).executeUpdate();
+	}
+
 }

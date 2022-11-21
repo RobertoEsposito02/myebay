@@ -108,4 +108,19 @@ public class AnnuncioController {
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/home";
 	}
+	
+	@GetMapping("/delete/{idAnnuncio}")
+	public String delete(@PathVariable(required = true) Long idAnnuncio,Model model) {
+		model.addAttribute("delete_annuncio_attr", annuncioService.caricaSingoloEager(idAnnuncio));
+		return "annuncio/delete";
+	}
+	
+	@PostMapping("/executeDelete")
+	public String executeDelete(@RequestParam Long idAnnuncio, RedirectAttributes redirectAttrs) {
+		
+		annuncioService.scollegaAnnuncio(idAnnuncio);
+		annuncioService.rimuovi(idAnnuncio);
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/home";
+	}
 }

@@ -48,10 +48,10 @@
 										<td>${annuncioItem.prezzo }</td>
 										<td>
 											<a class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/annuncio/show/${annuncioItem.id }">Visualizza</a>
-											<c:if test="${userInfo.username eq annuncioItem.utenteInserimento.username }">
+											<c:if test="${userInfo.username eq annuncioItem.utenteInserimento.username and annuncioItem.aperto == true }">
 												<a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/annuncio/edit/${annuncioItem.id }">Edit</a>
 											</c:if>
-											<c:if test="${userInfo.username eq annuncioItem.utenteInserimento.username }">
+											<c:if test="${userInfo.username eq annuncioItem.utenteInserimento.username and annuncioItem.aperto == true }">
 												<a class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/annuncio/delete/${annuncioItem.id }">Delete</a>
 											</c:if>
 										</td>

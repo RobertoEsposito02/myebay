@@ -91,7 +91,7 @@
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
 			        </div>
 			        <h2 class="text-light">I miei Annunci</h2>
-			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+			        <p class="text-light">Tramite questa funzione sarà possibile modificare o eliminare un proprio annuncio, nel caso sia ancora aperto, oltre a visionarne i dettagli. Si potrà inoltre inserire un nuovo annuncio.</p>
 			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/annuncio/listMyAnnunci" class="icon-link text-info">
 			          Vai alla funzionalità
 			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
