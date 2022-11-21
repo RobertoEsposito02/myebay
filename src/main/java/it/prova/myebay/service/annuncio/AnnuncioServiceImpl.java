@@ -73,8 +73,7 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 	@Override
 	public void executeCompra(Long idAnnuncio) {
 		Annuncio annuncio = repository.findByIdConCategorie(idAnnuncio).orElse(null);
-		
-		if(SecurityContextHolder.getContext().getAuthentication().getName() != null) {
+		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
 			UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
 			if(annuncio.getPrezzo() <= utente.getCreditoResiduo()) {

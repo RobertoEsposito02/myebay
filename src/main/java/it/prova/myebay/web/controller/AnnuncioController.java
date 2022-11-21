@@ -32,8 +32,11 @@ public class AnnuncioController {
 
 	@PostMapping("/list")
 	public String listAllAnnuncio(Annuncio annuncioExample, Model model) {
-		//model.addAttribute("list_annuncio_attr", annuncioService.findByExample(annuncioExample));
-		model.addAttribute("list_annuncio_attr", annuncioService.caricaTuttiGliAnnunciNonMiei(annuncioExample));
+		if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
+			model.addAttribute("list_annuncio_attr", annuncioService.caricaTuttiGliAnnunciNonMiei(annuncioExample));
+		}else {
+			model.addAttribute("list_annuncio_attr", annuncioService.findByExample(annuncioExample));
+		}
 		return "annuncio/list";
 	}
 
@@ -42,15 +45,17 @@ public class AnnuncioController {
 			RedirectAttributes redirectAttrs) {
 		try {
 			annuncioService.executeCompra(idAnnuncio);
-		} catch (CreditoNonSufficienteException e) {
+		}catch (LoginNonEffettuatoException e) {
+			e.printStackTrace();
+			//model.addAttribute("errorMessage", "Bisogna effettuare il login se si vuole aquistare");
+			//return "/login";
+			redirectAttrs.addFlashAttribute("errorMessage", "Bisogna effettuare il login se si vuole aquistare");
+			return "redirect:/login";
+		}catch (CreditoNonSufficienteException e) {
 			e.printStackTrace();
 			model.addAttribute("errorMessage", "Credito non sufficiente");
 			return "/home";
-		} catch (LoginNonEffettuatoException e) {
-			e.printStackTrace();
-			model.addAttribute("errorMessage", "Credito non sufficienteBisogna effettuare il login se si vuole aquistare");
-			return "/login";
-		}
+		} 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/aquisto/list";
 	}
