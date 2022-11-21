@@ -29,8 +29,11 @@
 			    </div>
 			    <div class='card-body'>
 			    	<a href="${pageContext.request.contextPath}/home" class='btn btn-outline-secondary' >
-				            <i class='fa fa-chevron-left'></i> Torna alla HomePage
-				        </a>
+				      <i class='fa fa-chevron-left'></i> Torna alla HomePage
+				    </a>
+				    <a href="${pageContext.request.contextPath}/annuncio/insert" class='btn btn-outline-primary' >
+				      <i class='fa fa-chevron-left'></i> Add new
+				    </a>
 			    
 			        <div class='table-responsive'>
 			            <table class='table table-striped ' >

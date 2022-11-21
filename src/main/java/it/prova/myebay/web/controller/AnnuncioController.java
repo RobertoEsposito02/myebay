@@ -1,6 +1,7 @@
 package it.prova.myebay.web.controller;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -120,6 +121,31 @@ public class AnnuncioController {
 		
 		annuncioService.scollegaAnnuncio(idAnnuncio);
 		annuncioService.rimuovi(idAnnuncio);
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/home";
+	}
+	
+	@GetMapping("/insert")
+	public String insert(Model model) {
+		model.addAttribute("insert_annuncio_attr", new AnnuncioDTO());
+		return "annuncio/insert";
+	}
+	
+	@PostMapping("/executeInsert")
+	public String executeInsert(@Validated@ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
+			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+		
+		if (result.hasErrors()) {
+			return "annuncio/insert";
+		}
+		 
+		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+		annuncioDTO.setUtenteInserimento(utente);
+		annuncioDTO.setData(new Date());
+		annuncioDTO.setAperto(true);
+		System.out.println(annuncioDTO.isAperto());
+		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel());
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/home";
 	}
