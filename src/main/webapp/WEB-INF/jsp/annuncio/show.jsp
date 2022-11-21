@@ -56,7 +56,7 @@
 			         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmOperationModal">
 					  Compra
 					</button>
-			        <a href="#"  class='btn btn-outline-secondary' style='width:80px'>
+			        <a href="${pageContext.request.contextPath}/annuncio/list"  class='btn btn-outline-secondary' style='width:80px'>
 			            <i class='fa fa-chevron-left'></i> Back
 			        </a>
 			    </div>

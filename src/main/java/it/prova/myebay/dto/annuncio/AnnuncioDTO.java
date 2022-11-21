@@ -6,13 +6,26 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+import org.hibernate.validator.constraints.Range;
+
 import it.prova.myebay.model.Annuncio;
 import it.prova.myebay.model.Categoria;
 import it.prova.myebay.model.Utente;
+import it.prova.myebay.validation.ValidationNoPassword;
+import it.prova.myebay.validation.ValidationWithPassword;
 
 public class AnnuncioDTO {
 	private Long id;
+	@NotBlank(message = "{annuncio.testo.notblank}")
 	private String testoAnnuncio;
+	@Positive(message = "{annuncio.prezzo.positive}")
+	@Range(min = 1, message = "{annuncio.prezzo.zero}")
 	private Integer prezzo;
 	private Date data;
 	private boolean aperto;
@@ -91,6 +104,12 @@ public class AnnuncioDTO {
 		this.categorie = categorie;
 	}
 
+	public Annuncio buildAnnuncioModel() {
+		Annuncio result = new Annuncio(this.id, this.testoAnnuncio, this.prezzo ,this.data, this.aperto, this.utenteInserimento);
+		result.setCategorie(this.categorie);
+		return result;
+	}
+	
 	public static AnnuncioDTO buildAnnuncioFromModel(Annuncio annuncioModel) {
 		return new AnnuncioDTO(annuncioModel.getId(), annuncioModel.getTestoAnnuncio(), annuncioModel.getPrezzo(),
 				annuncioModel.getData(), annuncioModel.isAperto(), annuncioModel.getUtenteInserimento());
