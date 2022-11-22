@@ -52,18 +52,14 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
 		annuncioInstance.setUtenteInserimento(utente);
+		annuncioInstance.setAperto(true);
 		repository.save(annuncioInstance);
 	}
 
 	@Override
 	@Transactional
 	public void inserisciNuovo(Annuncio annuncioInstance) {
-		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
-		annuncioInstance.setUtenteInserimento(utente);
-		annuncioInstance.setData(new Date());
-		annuncioInstance.setAperto(true);
-		repository.save(annuncioInstance);
+		repository.save(annuncioInstance); 
 	}
 
 	@Override
@@ -130,6 +126,14 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 	@Transactional
 	public void scollegaAnnuncio(Long id) {
 		repository.scollegaAnnuncio(id);
+	}
+
+	@Override
+	public void inserisci(Annuncio annuncioInstance, String username) {
+		annuncioInstance.setUtenteInserimento(utenteRepository.findByUsername(username).orElse(null));
+		annuncioInstance.setData(new Date());
+		annuncioInstance.setAperto(true);
+		repository.save(annuncioInstance); 
 	}
 
 }

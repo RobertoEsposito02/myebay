@@ -38,11 +38,11 @@
 		   
         </ul>
       </div>
-      <c:if test="${userInfo == null}">
+      <sec:authorize access="isAnonymous()">
 	   	  <div class="col-md-3 text-end" >
 	    	<a class="text-light" style="text-decoration: none" href="${pageContext.request.contextPath}/login">Login</a>
 	      </div>
-	  </c:if>
+	  </sec:authorize>
       	<sec:authorize access="isAuthenticated()">
 	   	  <div class="col-md-3 text-end" >
 	       	<p style="margin-bottom: 0px;" class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })

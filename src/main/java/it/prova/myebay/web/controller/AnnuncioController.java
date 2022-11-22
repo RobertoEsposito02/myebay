@@ -70,7 +70,7 @@ public class AnnuncioController {
 		}catch (CreditoNonSufficienteException e) {
 			e.printStackTrace();
 			redirectAttrs.addFlashAttribute("errorMessage", "Credito non sufficiente");
-			return "redirect:/annuncio/show/" + idAnnuncio;
+			return "redirect:/annuncio/show/" + idAnnuncio; 
 		} 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/aquisto/list";
@@ -127,13 +127,13 @@ public class AnnuncioController {
 	
 	@PostMapping("/executeInsert")
 	public String executeInsert(@Validated@ModelAttribute("insert_annuncio_attr") AnnuncioDTO annuncioDTO,
-			BindingResult result, Model model, RedirectAttributes redirectAttrs) {
+			BindingResult result, Model model, RedirectAttributes redirectAttrs, Principal principal) {
 		
 		if (result.hasErrors()) {
 			return "annuncio/insert";
 		}
 		 
-		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel());
+		annuncioService.inserisci(annuncioDTO.buildAnnuncioModel(),principal.getName());
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/home";

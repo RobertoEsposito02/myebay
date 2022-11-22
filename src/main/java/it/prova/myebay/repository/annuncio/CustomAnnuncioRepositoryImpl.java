@@ -24,7 +24,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		Map<String, Object> parameterValue = new HashMap<>();
 		List<String> whereClause = new ArrayList<>();
 		
-		StringBuilder queryBuilder = new StringBuilder(" select distinct a from Annuncio a left join fetch a.utenteInserimento u left join fetch a.categorie c where aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder(" select distinct a from Annuncio a left join fetch a.utenteInserimento u left fetch join a.categorie c where aperto = 1 ");
 
 		if(!example.getTestoAnnuncio().isEmpty()) {
 			whereClause.add(" a.testoAnnuncio like :testoAnnuncio ");
