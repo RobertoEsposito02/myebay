@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import org.apache.commons.lang3.StringUtils;
 
 import it.prova.myebay.model.Annuncio;
+import it.prova.myebay.model.Categoria;
 
 public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 
@@ -33,6 +34,12 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 			whereClause.add(" a.prezzo >= :prezzo ");
 			parameterValue.put("prezzo", example.getPrezzo());
 		}
+		/*
+		if(!example.getCategorie().isEmpty()) {
+			for (Categoria categoria : example.getCategorie()) {
+				
+			}
+		}*/
 		
 		queryBuilder.append(!whereClause.isEmpty()?" and ":"");
 		queryBuilder.append(StringUtils.join(whereClause, "and"));
