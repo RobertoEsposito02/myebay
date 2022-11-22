@@ -96,6 +96,13 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsername(username).orElse(null);
 	}
 
+	@Override
+	public void cambiaPassword(String nuovaPassword, String username) {
+		Utente utente = repository.findByUsername(username).orElse(null);
+		utente.setPassword(passwordEncoder.encode(nuovaPassword));
+		repository.save(utente);
+	}
+
 	
 
 }

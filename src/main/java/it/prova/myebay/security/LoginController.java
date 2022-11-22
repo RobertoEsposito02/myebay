@@ -56,6 +56,11 @@ public class LoginController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
+		
+		if(model.getAttribute("successMessage") != null) {
+			model.addAttribute("successMessage", "You have been successfully logged out !!");
+		}
+		
 		model.addAttribute("infoMessage", "You have been successfully logged out !!");
 		return "index";
 	}
@@ -63,7 +68,7 @@ public class LoginController {
 	@RequestMapping(value = "/accessDenied", method = {RequestMethod.POST,RequestMethod.GET})
 	public String accessDenied(Model model) {
 		model.addAttribute("errorMessage", "Attenzione! Non si dispone delle autorizzazioni per accedere alla funzionalità richiesta.");
-		return "index";
+		return "index"; 
 	}
 
 }

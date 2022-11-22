@@ -45,13 +45,26 @@
 	  </c:if>
       	<sec:authorize access="isAuthenticated()">
 	   	  <div class="col-md-3 text-end" >
-	       	<p class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
-	    	<a style="text-decoration: none" href="${pageContext.request.contextPath}/logout">Logout</a></p>
+	       	<p style="margin-bottom: 0px;" class="navbar-text">Utente: <sec:authentication property="name"/> (${userInfo.nome } ${userInfo.cognome })
+	    	</p>
 	      </div>
 	   	</sec:authorize>
-	  <div class="col-md-1 text-end" >
-	    	<a class="nav-item text-light" style="text-decoration: none" href="${pageContext.request.contextPath}/utente/personalpage">Account</a>
-	    </div>
+	   	<sec:authorize access="isAuthenticated()">
+		  	<div class="col-md-1 text-end" >
+		  		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			  		<li class="nav-item dropdown">
+			  			<a class="nav-link dropdown-toggle text-light" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+				  		<div class="dropdown-menu" aria-labelledby="dropdown01">
+				    		<a class="nav-item text-dark text-center" style="text-decoration: none; margin-left: 10px" href="${pageContext.request.contextPath}/utente/personalpage">Personal Page</a>
+				    		<div class="dropdown-divider"></div>
+				    		<a class="nav-item text-dark text-center" style="text-decoration: none; margin-left: 10px" href="${pageContext.request.contextPath}/account/cambiaPassword">Change Password</a>
+				    		<div class="dropdown-divider"></div>
+				    		<a class="text-dark" style="text-decoration: none; margin-left: 10px" href="${pageContext.request.contextPath}/logout">Logout</a>
+				    	</div>
+			    	</li>
+		    	</ul>
+		    </div>
+	     </sec:authorize>
     </div>
   </nav>
   
