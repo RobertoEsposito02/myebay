@@ -14,7 +14,10 @@
 	
 	<!-- Begin page content -->
 	<main class="flex-shrink-0">
-	  	<div class="container">
+	  	<div class="container mb-5">
+			<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
+				  ${errorMessage}
+				</div>
 			
 			<div class='card'>
 			    <div class='card-header' style="background-color: #08082b;">

@@ -55,7 +55,9 @@
 				  ${successMessage}
 				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
-				
+				<div class="alert alert-info alert-dismissible fade show ${infoMessage==null?'d-none': ''}" role="alert">
+				  ${infoMessage}
+				</div>
 			    
 			     <div class="p-5 mb-4 rounded-5" style="background-color: #03031a;">
 				      <div class="container-fluid py-5" >
@@ -89,12 +91,12 @@
 								<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
 							</div>
 							
-							<div class="col-md-6">
-									<label for="categorie" class="form-label">Seleziona categorie:</label><br>
-										<c:forEach items="${categorie_list_attribute }" var="categoriaItem">
-  									<input class="form-check-input" type="checkbox" id="categorie" name="categorie" value="${categoriaItem.id }"> ${categoriaItem.descrizione }<br>
-  										</c:forEach>
-								</div>
+							<div class="col-md-6 form-check form-switch">
+								<label for="categorie" class="form-label" style="margin-left: -35px	">Seleziona categorie:</label><br>
+								<c:forEach items="${categorie_list_attribute }" var="categoriaItem">
+  									<input  class="form-check-input" type="checkbox" id="categorie" name="categorie" value="${categoriaItem.id }"> ${categoriaItem.descrizione }<br>
+  								</c:forEach>
+							</div>
 							
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-info text-light">Conferma</button>

@@ -1,5 +1,6 @@
 package it.prova.myebay.web.controller;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -60,7 +61,13 @@ public class AnnuncioController {
 
 	@PostMapping("/executeCompra")
 	public String executeCompra(@RequestParam Long idAnnuncio, Model model,
-			RedirectAttributes redirectAttrs) {
+			RedirectAttributes redirectAttrs, Principal principal) {
+		
+		if(principal == null) {
+			model.addAttribute("idAnnuncio", idAnnuncio);
+			return "/login";
+		}
+		
 		try {
 			annuncioService.executeCompra(idAnnuncio);
 		}catch (LoginNonEffettuatoException e) {
@@ -70,7 +77,7 @@ public class AnnuncioController {
 		}catch (CreditoNonSufficienteException e) {
 			e.printStackTrace();
 			redirectAttrs.addFlashAttribute("errorMessage", "Credito non sufficiente");
-			return "redirect:/home";
+			return "redirect:/annuncio/show/" + idAnnuncio;
 		} 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/aquisto/list";
@@ -144,7 +151,6 @@ public class AnnuncioController {
 		annuncioDTO.setUtenteInserimento(utente);
 		annuncioDTO.setData(new Date());
 		annuncioDTO.setAperto(true);
-		System.out.println(annuncioDTO.isAperto());
 		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel());
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/home";
