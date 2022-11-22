@@ -1,3 +1,7 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="it" class="h-100" >
 	 <head>
@@ -84,17 +88,14 @@
 								<label for="prezzo" class="form-label">Prezzo</label>
 								<input type="number" name="prezzo" id="prezzo" class="form-control" placeholder="Inserire il prezzo" >
 							</div>
-							<!--  
-							<div class="col-md-3">
-								<label for="stato" class="form-label">Categoria</label>
-								    <select class="form-select " id="stato" name="stato" >
-								    	<option value="" selected> - Selezionare - </option>
-								      	<option value="ATTIVO" >ATTIVO</option>
-								    	<option value="CREATO">CREATO</option>
-								      	<option value="DISABILITATO" >DISABILITATO</option>
-							    	</select>
-							</div>
-							-->
+							
+							<div class="col-md-6">
+									<label for="categorie" class="form-label">Seleziona categorie:</label><br>
+										<c:forEach items="${categorie_list_attribute }" var="categoriaItem">
+  									<input class="form-check-input" type="checkbox" id="categorie" name="categorie" value="${categoriaItem.id }"> ${categoriaItem.descrizione }<br>
+  										</c:forEach>
+								</div>
+							
 							<div class="col-12">	
 								<button type="submit" name="submit" value="submit" id="submit" class="btn btn-info text-light">Conferma</button>
 								<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
@@ -108,45 +109,6 @@
 			</div>	
 	
 		</div>
-			  <!--  
-			  <div class="container px-4 py-5" id="featured-3">
-			    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"/></svg>
-			        </div>
-			        <h2>Ricerca Registi</h2>
-			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/search" class="icon-link text-info">
-			          Vai alla funzionalità
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-			        </a>
-			      </div>
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"/></svg>
-			        </div>
-			        <h2>Inserisci Nuovo Regista</h2>
-			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a style="text-decoration: none" href="${pageContext.request.contextPath}/regista/insert" class="icon-link text-info">
-			          Vai alla funzionalità
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-			        </a>
-			      </div>
-			      <div class="feature col">
-			        <div class="feature-icon bg-info bg-gradient">
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"/></svg>
-			        </div>
-			        <h2>Ricerca Film</h2>
-			        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-			        <a style="text-decoration: none;" href="${pageContext.request.contextPath}/film/search" class="icon-link text-info">
-			          Vai alla funzionalità
-			          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"/></svg>
-			        </a>
-			      </div>
-			    </div>
-			  </div>
-			  -->
 			</main>
 			
 			<!-- Footer -->

@@ -24,7 +24,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		Map<String, Object> parameterValue = new HashMap<>();
 		List<String> whereClause = new ArrayList<>();
 		
-		StringBuilder queryBuilder = new StringBuilder("from Annuncio a left join fetch a.utenteInserimento u where aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder(" select distinct a from Annuncio a left join fetch a.utenteInserimento u left join fetch a.categorie c where aperto = 1 ");
 
 		if(!example.getTestoAnnuncio().isEmpty()) {
 			whereClause.add(" a.testoAnnuncio like :testoAnnuncio ");
@@ -34,12 +34,10 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 			whereClause.add(" a.prezzo >= :prezzo ");
 			parameterValue.put("prezzo", example.getPrezzo());
 		}
-		/*
-		if(!example.getCategorie().isEmpty()) {
-			for (Categoria categoria : example.getCategorie()) {
-				
-			}
-		}*/
+		if(example.getCategorie() != null && !example.getCategorie().isEmpty()) {
+			whereClause.add(" c in :categorie ");
+			parameterValue.put("categorie", example.getCategorie());
+		}
 		
 		queryBuilder.append(!whereClause.isEmpty()?" and ":"");
 		queryBuilder.append(StringUtils.join(whereClause, "and"));
@@ -57,7 +55,7 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		Map<String, Object> parameterValue = new HashMap<>();
 		List<String> whereClause = new ArrayList<>();
 		
-		StringBuilder queryBuilder = new StringBuilder("from Annuncio a left join fetch a.utenteInserimento u where not a.id  = :id and aperto = 1 ");
+		StringBuilder queryBuilder = new StringBuilder(" select distinct a from Annuncio a left join fetch a.utenteInserimento u left join fetch a.categorie c where not a.id  = :id and aperto = 1 ");
 		parameterValue.put("id", id);
 		
 		if(!example.getTestoAnnuncio().isEmpty()) {
@@ -67,6 +65,10 @@ public class CustomAnnuncioRepositoryImpl implements CustomAnnuncioRepository{
 		if(example.getPrezzo() != null) {
 			whereClause.add(" a.prezzo >= :prezzo ");
 			parameterValue.put("prezzo", example.getPrezzo());
+		}
+		if(example.getCategorie() != null && !example.getCategorie().isEmpty()) {
+			whereClause.add(" c in :categorie ");
+			parameterValue.put("categorie", example.getCategorie());
 		}
 		
 		queryBuilder.append(!whereClause.isEmpty()?" and ":"");
