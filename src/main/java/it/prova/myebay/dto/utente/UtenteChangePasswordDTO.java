@@ -3,6 +3,8 @@ package it.prova.myebay.dto.utente;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import it.prova.myebay.validation.ValidationWithPassword;
 
 public class UtenteChangePasswordDTO {
@@ -49,7 +51,7 @@ public class UtenteChangePasswordDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	public String getConfermaPassword() {
 		return confermaPassword;
 	}

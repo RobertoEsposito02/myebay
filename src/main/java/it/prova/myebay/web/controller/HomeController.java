@@ -13,7 +13,7 @@ public class HomeController {
 	@Autowired
 	private CategoriaService categoriaService;
 	
-	@RequestMapping(value = {"/home",""})
+	@RequestMapping(value = {"/home","","/"})
 	public String home(Model model) {
 		model.addAttribute("categorie_list_attribute", categoriaService.listAllCategorie());
 		return "index";

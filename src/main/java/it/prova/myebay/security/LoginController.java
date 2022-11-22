@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
@@ -49,7 +50,7 @@ public class LoginController {
     }
 
 	@RequestMapping(value = "/executeLogout", method = RequestMethod.GET)
-	public String logoutPage(Model model, HttpServletRequest request, HttpServletResponse response) {
+	public String logoutPage(Model model, HttpServletRequest request, HttpServletResponse response,RedirectAttributes redirectAttrs) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		//dovrebbe essere già impostato a null dalle impostazioni invalidateHttpSession(true)
 		//nel SecSecurityConfig ma il controllo si fa comunque
@@ -61,8 +62,9 @@ public class LoginController {
 			model.addAttribute("successMessage", "You have been successfully logged out !!");
 		}
 		
-		model.addAttribute("infoMessage", "You have been successfully logged out !!");
-		return "index";
+		//model.addAttribute("infoMessage", "You have been successfully logged out !!");
+		redirectAttrs.addFlashAttribute("infoMessage", "You have been successfully logged out !!");
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/accessDenied", method = {RequestMethod.POST,RequestMethod.GET})

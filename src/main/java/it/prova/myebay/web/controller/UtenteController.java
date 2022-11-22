@@ -3,6 +3,7 @@ package it.prova.myebay.web.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -123,4 +124,10 @@ public class UtenteController {
 		return "utente/personalpage";
 	}
 
+	@PostMapping("/resettaPassword")
+	public String resettaPassword(@RequestParam(name = "idUtente", required = true) Long idUtente, RedirectAttributes redirectAttrs) {
+		utenteService.resettaPassword(idUtente);
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/utente";
+	}
 }

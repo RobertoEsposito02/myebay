@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,9 @@ import it.prova.myebay.repository.utente.UtenteRepository;
 @Service
 public class UtenteServiceImpl implements UtenteService {
 
+	@Value("${utente.password.reset.value}") 
+	private String pass;
+	
 	@Autowired
 	private UtenteRepository repository;
 	
@@ -101,6 +105,20 @@ public class UtenteServiceImpl implements UtenteService {
 		Utente utente = repository.findByUsername(username).orElse(null);
 		utente.setPassword(passwordEncoder.encode(nuovaPassword));
 		repository.save(utente);
+	}
+
+	@Override
+	public void resettaPassword(Long isUtente) {
+		Utente utenteInstance = caricaSingoloUtente(isUtente);
+		if(utenteInstance == null)
+			throw new RuntimeException("Elemento non trovato.");
+		
+		//String passString = "Password@1";
+		
+		
+		
+		utenteInstance.setPassword(passwordEncoder.encode(pass));
+		repository.save(utenteInstance);
 	}
 
 	

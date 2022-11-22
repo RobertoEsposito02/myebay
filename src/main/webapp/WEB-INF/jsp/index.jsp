@@ -57,6 +57,7 @@
 				</div>
 				<div class="alert alert-info alert-dismissible fade show ${infoMessage==null?'d-none': ''}" role="alert">
 				  ${infoMessage}
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" ></button>
 				</div>
 			    
 			     <div class="p-5 mb-4 rounded-5" style="background-color: #03031a;">
