@@ -2,13 +2,11 @@ package it.prova.myebay.web.controller;
 
 import java.security.Principal;
 import java.text.ParseException;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,8 +24,6 @@ import it.prova.myebay.dto.annuncio.AnnuncioDTO;
 import it.prova.myebay.exception.CreditoNonSufficienteException;
 import it.prova.myebay.exception.LoginNonEffettuatoException;
 import it.prova.myebay.model.Annuncio;
-import it.prova.myebay.model.Utente;
-import it.prova.myebay.repository.utente.UtenteRepository;
 import it.prova.myebay.service.annuncio.AnnuncioService;
 
 @Controller
@@ -37,14 +33,11 @@ public class AnnuncioController {
 	@Autowired
 	private AnnuncioService annuncioService;
 	
-	@Autowired
-	private UtenteRepository utenteRepository;
-
 	@GetMapping("/show/{idAnnuncio}")
 	public String show(@PathVariable(required = true) Long idAnnuncio, Model model) {
 		model.addAttribute("show_annuncio_attr", annuncioService.caricaSingoloEager(idAnnuncio));
 		return "annuncio/show";
-	}
+	} 
 
 	@RequestMapping(value = "/list", method = {RequestMethod.POST,RequestMethod.GET})
 	public String listAllAnnuncio(Annuncio annuncioExample, Model model) throws ParseException {
@@ -105,12 +98,6 @@ public class AnnuncioController {
 			return "annuncio/edit";
 		}
 		
-		if(annuncioDTO.getPrezzo() == null)
-			annuncioDTO.setPrezzo(0);
-		
-		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
-		annuncioDTO.setUtenteInserimento(utente);
 		annuncioService.aggiorna(annuncioDTO.buildAnnuncioModel());
 		
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
@@ -146,12 +133,8 @@ public class AnnuncioController {
 			return "annuncio/insert";
 		}
 		 
-		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
-		annuncioDTO.setUtenteInserimento(utente);
-		annuncioDTO.setData(new Date());
-		annuncioDTO.setAperto(true);
 		annuncioService.inserisciNuovo(annuncioDTO.buildAnnuncioModel());
+
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
 		return "redirect:/home";
 	}

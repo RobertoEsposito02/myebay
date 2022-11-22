@@ -25,6 +25,6 @@ public class AquistoController {
 	@GetMapping("/show/{idAquisto}")
 	public String show(@PathVariable(required = true) Long idAquisto,Model model) {
 		model.addAttribute("show_aquisto_attr", aquistoService.caricaSingoloAquisto(idAquisto));
-		return "aquisto/show";
+		return "aquisto/show"; 
 	}
 }

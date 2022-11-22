@@ -45,12 +45,24 @@ public class AnnuncioServiceImpl implements AnnuncioService{
 	@Override
 	@Transactional
 	public void aggiorna(Annuncio annuncioInstance) {
+		
+		if(annuncioInstance.getPrezzo() == null)
+			annuncioInstance.setPrezzo(0);
+		
+		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+		annuncioInstance.setUtenteInserimento(utente);
 		repository.save(annuncioInstance);
 	}
 
 	@Override
 	@Transactional
 	public void inserisciNuovo(Annuncio annuncioInstance) {
+		UserDetails principal = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente utente = utenteRepository.findByUsername(principal.getUsername()).orElse(null);
+		annuncioInstance.setUtenteInserimento(utente);
+		annuncioInstance.setData(new Date());
+		annuncioInstance.setAperto(true);
 		repository.save(annuncioInstance);
 	}
 

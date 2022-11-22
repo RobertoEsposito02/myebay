@@ -40,7 +40,7 @@ public class UtenteController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("utente_list_attribute",
 				UtenteDTO.createUtenteDTOListFromModelList(utenteService.listAllUtenti(), false));
-		mv.setViewName("utente/list");
+		mv.setViewName("utente/list"); 
 		return mv;
 	}
 
